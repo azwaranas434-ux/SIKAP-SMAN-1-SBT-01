@@ -113,10 +113,19 @@ async function autoImportAllSeeds() {
 }
 
 async function init() {
-  document.getElementById("content").innerHTML = `<div class="empty-state" style="padding:100px 0;">Memuat data…</div>`;
-  await loadAll();
-  await autoImportAllSeeds();
-  render();
+  document.getElementById("content").innerHTML = `<div class="empty-state" style="padding:100px 0;">Memuat data dari Supabase…</div>`;
+  try {
+    await loadAll();
+    await autoImportAllSeeds();
+    render();
+  } catch (e) {
+    document.getElementById("content").innerHTML = `
+      <div class="card card-pad"><div class="empty-state" style="padding:40px 20px;">
+        <div class="et">Gagal terhubung ke Supabase</div>
+        <div style="max-width:520px;margin:8px auto 0;font-size:13px;">${e.message || e}</div>
+        <div class="hint" style="margin-top:12px;">Pastikan tabel <b>app_storage</b> sudah dibuat (jalankan <b>supabase/schema.sql</b>) dan env <b>SUPABASE_URL</b> + <b>SUPABASE_ANON_KEY</b> terisi di Vercel lalu redeploy.</div>
+      </div></div>`;
+  }
 }
 
 document.getElementById("menuToggle").addEventListener("click", () => {
