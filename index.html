@@ -10,8 +10,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.4/chart.umd.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-  // Env disuntik saat deploy Vercel (lihat .env.example).
-  // Ganti manual di bawah ini untuk testing lokal, atau isi via Vercel Environment Variables.
+  // Konfigurasi Supabase diambil otomatis dari /api/config (env Vercel).
+  // Fallback testing lokal: isi 2 baris di bawah ini, JANGAN commit key asli ke GitHub.
   window.ENV_SUPABASE_URL = "";
   window.ENV_SUPABASE_ANON_KEY = "";
 </script>
